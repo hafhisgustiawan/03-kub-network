@@ -15,5 +15,19 @@ spec:
       containers:
         - name: users
           image: hafhisgustiawan/users:2
-        - name: auth
-          image: hafhisgustiawan/auth:1
+          env:
+            - name: AUTH_ADDRESS
+              # localhost disini bisa digunakan untuk komunikasi antar container di pod yang sama, gausah pake port
+              # value: localhost
+
+              # kalo komunikasi antar pod itu menggunakan cluster ip yang dibuat menggunakan service
+              # atau bisa pake auto generated env by kubernetes, cek /users-api/users-app.js:59
+              # value: 10.100.249.127
+
+              # secara default, kubernetes itu include core-dns, disini kita bisa menggunakan nama_service.namespace
+              # untuk mengecek namespace : kubectl get namespaces
+              # disini kita akan pake yang default karena itu bawaan
+              value: "auth-service.default"
+
+        # - name: auth
+        #   image: hafhisgustiawan/auth:1

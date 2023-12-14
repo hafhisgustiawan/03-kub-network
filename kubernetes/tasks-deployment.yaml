@@ -14,10 +14,9 @@ spec:
     spec:
       containers:
         - name: tasks-container
-          image: hafhisgustiawan/tasks:1
+          image: hafhisgustiawan/tasks:2
           env:
             - name: TASKS_FOLDER
               value: tasks
-
             - name: AUTH_ADDRESS
               value: auth-service.default
